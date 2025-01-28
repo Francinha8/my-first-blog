@@ -1,13 +1,18 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-{% for post in posts %}
-<div class="post">
-    <div class="date">
-        {{ post.published_date }}
+    {% for post in posts %}
+    <div class="post text-center mb-5">  <!-- Adicionado text-center e mb-5 para espaçamento -->
+        <div class="date">
+            {{ post.published_date }}
+        </div>
+        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+        {% if post.image %}
+            <div class="post-image">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid mx-auto">  <!-- Adicionado mx-auto -->
+            </div>
+        {% endif %}
+        <p>{{ post.text|linebreaksbr }}</p>
     </div>
-    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-    <p>{{ post.text|linebreaksbr }}</p>
-</div>
-{% endfor %}
+    {% endfor %}
 {% endblock %}
