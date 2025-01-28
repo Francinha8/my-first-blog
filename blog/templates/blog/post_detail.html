@@ -17,7 +17,7 @@
     </div>
 
     <div class="comments">
-        <h3>Comentários</h3>
+        <h3>Respostas</h3>
         {% for comment in comments %}
             <div class="comment">
                 <strong>{{ comment.author.username }}</strong>
@@ -27,11 +27,11 @@
         {% endfor %}
     
         {% if user.is_authenticated %}
-            <h4>Deixe seu comentário</h4>
+            <h4>Comente sua experiência</h4>
             <form method="POST" class="comment-form">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary">Publicar</button>
             </form>
         {% else %}
             <p>Para comentar, por favor <a href="{% url 'login' %}">faça login</a> ou 
